@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_app/app/utils/app_assets.dart';
 
@@ -53,12 +54,13 @@ class GroceryOnBoard extends StatelessWidget {
                   onPressed: () {},
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 60, vertical: 30),
-                    decoration: const BoxDecoration(
+                        horizontal: 60, vertical: 25),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
                       gradient: gradientColor,
                     ),
                     child: const Text(
-                      "Get Start",
+                      "Get Started",
                       style: TextStyle(
                           fontWeight: FontWeight.w800,
                           fontSize: 25,
