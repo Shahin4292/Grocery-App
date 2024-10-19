@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/app/utils/app_assets.dart';
 
 import '../../../utils/color_utils.dart';
 
@@ -16,7 +17,11 @@ class GroceryOnBoard extends StatelessWidget {
             child: Container(
               width: size.width,
               height: size.height * 0.6,
-              color: textGreen,
+              color: onBoardBackgroundColor,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 45),
+                child: Image.asset(AppAssets.onBoardingProfile),
+              ),
             ),
           )
         ],
