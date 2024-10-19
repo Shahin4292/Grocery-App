@@ -17,7 +17,7 @@ class GroceryOnBoard extends StatelessWidget {
             clipper: ClipPathOnBoard(),
             child: Container(
               width: size.width,
-              height: size.height * 0.6,
+              height: size.height * 0.40,
               color: onBoardBackgroundColor,
               child: Padding(
                 padding: const EdgeInsets.only(top: 45),
