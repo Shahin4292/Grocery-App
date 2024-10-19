@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/utils/color_utils.dart';
+
+import '../../../utils/color_utils.dart';
 
 class GroceryOnBoard extends StatelessWidget {
   const GroceryOnBoard({super.key});
