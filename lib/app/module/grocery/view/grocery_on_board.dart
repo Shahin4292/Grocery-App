@@ -23,6 +23,51 @@ class GroceryOnBoard extends StatelessWidget {
                 child: Image.asset(AppAssets.onBoardingProfile),
               ),
             ),
+          ),
+          SizedBox(
+            height: size.height * 0.40,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 30,
+                ),
+                const Text(
+                  "Buy Groceries\nEasilly With Us",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w900, fontSize: 40, height: 1.3),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                const Text(
+                  "Listen podcast and open your\nworld with this application",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.grey),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 60, vertical: 30),
+                    decoration: const BoxDecoration(
+                      gradient: gradientColor,
+                    ),
+                    child: const Text(
+                      "Get Start",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 25,
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           )
         ],
       ),
