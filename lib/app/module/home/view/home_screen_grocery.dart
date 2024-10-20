@@ -15,7 +15,62 @@ class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
       backgroundColor: backgroundColor,
       body: SafeArea(
         child: Column(
-          children: [headerPart()],
+          children: [
+            headerPart(),
+            const SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 65,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                      ),
+                      child: Center(
+                        child: TextField(
+                          onChanged: (value) {},
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: Colors.grey,size: 25,
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            hintText: "Search Grocery",
+                            hintStyle:
+                                TextStyle(fontSize: 18, color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.green[50],
+                    ),
+                    child: const Icon(
+                      Icons.tune_rounded,
+                      size: 30,
+                      color: Colors.green,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
