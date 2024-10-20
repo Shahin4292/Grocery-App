@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/app/utils/color_utils.dart';
 
+import '../../../data/model/products.dart';
+
 class HomeScreenGrocery extends StatefulWidget {
   const HomeScreenGrocery({super.key});
 
@@ -38,7 +40,8 @@ class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
                           decoration: const InputDecoration(
                             prefixIcon: Icon(
                               Icons.search,
-                              color: Colors.grey,size: 25,
+                              color: Colors.grey,
+                              size: 25,
                             ),
                             filled: true,
                             fillColor: Colors.white,
@@ -68,6 +71,41 @@ class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
                     ),
                   ),
                 ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(
+                  groceryCategories.length,
+                  (index) => GestureDetector(
+                    onTap: () {},
+                    child: SizedBox(
+                      height: 50,
+                      child: Column(
+                        children: [
+                          Text(
+                            groceryCategories[index],
+                            style: const TextStyle(
+                                fontSize: 18,
+                                color: textGreen,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          groceryCategories[index] == index
+                              ? const CircleAvatar(
+                                  radius: 4,
+                                  backgroundColor: textGreen,
+                                )
+                              : const SizedBox()
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
