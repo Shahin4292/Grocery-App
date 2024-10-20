@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:grocery_app/app/utils/app_assets.dart';
+import 'package:grocery_app/app/widget/bottom_nav_bar.dart';
 
 import '../../../utils/color_utils.dart';
 
@@ -17,10 +19,10 @@ class GroceryOnBoard extends StatelessWidget {
             clipper: ClipPathOnBoard(),
             child: Container(
               width: size.width,
-              height: size.height * 0.40,
+              height: size.height * 0.5,
               color: onBoardBackgroundColor,
               child: Padding(
-                padding: const EdgeInsets.only(top: 45),
+                padding: const EdgeInsets.only(top: 70),
                 child: Image.asset(AppAssets.onBoardingProfile),
               ),
             ),
@@ -51,11 +53,14 @@ class GroceryOnBoard extends StatelessWidget {
                   height: 30,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.off(const BottomNavBar());
+                  },
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 60, vertical: 25),
                     decoration: BoxDecoration(
+
                       borderRadius: BorderRadius.circular(50),
                       gradient: gradientColor,
                     ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery_app/app/utils/color_utils.dart';
 
 import '../../../data/model/products.dart';
+import '../../../widget/product_item_display.dart';
 
 class HomeScreenGrocery extends StatefulWidget {
   const HomeScreenGrocery({super.key});
@@ -11,12 +12,16 @@ class HomeScreenGrocery extends StatefulWidget {
 }
 
 class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
+  String categories = "ALL";
+  List<Grocery> grocery = groceryItems;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             headerPart(),
             const SizedBox(
@@ -36,7 +41,15 @@ class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
                       ),
                       child: Center(
                         child: TextField(
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            setState(() {
+                              grocery = groceryItems
+                                  .where((element) => element.name
+                                  .toLowerCase()
+                                  .contains(value.toLowerCase()))
+                                  .toList();
+                            });
+                          },
                           decoration: const InputDecoration(
                             prefixIcon: Icon(
                               Icons.search,
@@ -83,19 +96,37 @@ class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
                 children: List.generate(
                   groceryCategories.length,
                   (index) => GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      setState(() {
+                        categories = groceryCategories[index];
+                        categories == "ALL"
+                            ? grocery = groceryItems
+                            : grocery = groceryItems
+                                .where((element) =>
+                                    element.category.toLowerCase() ==
+                                    categories.toLowerCase())
+                                .toList();
+                      });
+                    },
                     child: SizedBox(
                       height: 50,
                       child: Column(
                         children: [
                           Text(
                             groceryCategories[index],
-                            style: const TextStyle(
-                                fontSize: 18,
-                                color: textGreen,
-                                fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: categories == groceryCategories[index]
+                                    ? 18
+                                    : 16,
+                                color: categories == groceryCategories[index]
+                                    ? textGreen
+                                    : Colors.black26,
+                                fontWeight:
+                                    categories == groceryCategories[index]
+                                        ? FontWeight.w900
+                                        : FontWeight.w500),
                           ),
-                          groceryCategories[index] == index
+                          categories == groceryCategories[index]
                               ? const CircleAvatar(
                                   radius: 4,
                                   backgroundColor: textGreen,
@@ -103,6 +134,24 @@ class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
                               : const SizedBox()
                         ],
                       ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: List.generate(
+                    grocery.length,
+                    (index) => GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: ProductItemDisplay(grocery: grocery[index]),
+                      ),
+                      onTap: () {},
                     ),
                   ),
                 ),
@@ -134,8 +183,8 @@ class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
                   fontSize: 25,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
-                  height: 1.5,
-                  letterSpacing: 1.5,
+                  height: 1,
+                  letterSpacing: -0.5,
                 ),
               ),
             ]),

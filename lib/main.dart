@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:grocery_app/app/module/grocery/view/grocery_on_board.dart';
 import 'package:grocery_app/app/routes/apps_routes.dart';
 
 void main() {
@@ -18,8 +19,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: AppsRoutes.initialRoutes,
-      getPages: AppsRoutes.routes,
+      // initialRoute: AppsRoutes.initialRoutes,
+      // getPages: AppsRoutes.routes,
+      home: const GroceryOnBoard(),
     );
   }
 }
