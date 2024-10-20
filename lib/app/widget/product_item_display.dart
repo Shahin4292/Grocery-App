@@ -16,7 +16,7 @@ class ProductItemDisplay extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Stack(
               children: [
                 Positioned(
