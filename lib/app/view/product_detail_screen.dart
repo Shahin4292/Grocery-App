@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+// import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../model/products.dart';
 import '../utils/color_utils.dart';
 
@@ -13,6 +13,7 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  int quantity = 1;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -65,6 +66,159 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                 ),
               ],
+            ),
+            // items details
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.product.name,
+                    style: const TextStyle(
+                      fontSize: 35,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      // RatingBar.builder(
+                      //   initialRating: widget.product.rate,
+                      //   itemSize: 30,
+                      //   allowHalfRating: true,
+                      //   itemBuilder: (context, index) => const Icon(
+                      //     Icons.star_rounded,
+                      //     color: Colors.orange,
+                      //   ),
+                      //   onRatingUpdate: (rating) {},
+                      // ),
+                      Text(
+                        " (${widget.product.rate})",
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      const Spacer(),
+                      // for quantity increment decrement
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(
+                                    () => quantity > 1 ? quantity-- : null,
+                              );
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.green[50],
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "-",
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    color: Colors.green,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            quantity.toString(),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() => quantity++);
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                gradient: gradientColor,
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "+",
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Description",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  // const SizedBox(height: 20),
+                  // ReadMoreText(
+                  //   "${widget.product.name} ${widget.product.description}",
+                  //   style: const TextStyle(
+                  //     fontSize: 17,
+                  //     fontWeight: FontWeight.w500,
+                  //     height: 1.5,
+                  //     color: Colors.black26,
+                  //   ),
+                  //   trimLength: 110,
+                  //   trimCollapsedText: "Read More",
+                  //   trimExpandedText: "Read Less",
+                  //   colorClickableText: widget.product.color,
+                  //   moreStyle: TextStyle(
+                  //     fontWeight: FontWeight.bold,
+                  //     color: widget.product.color,
+                  //   ),
+                  // ),
+                  const SizedBox(height: 20),
+                  Container(
+                    height: 175,
+                    width: size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.grey.shade300,
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          top: 60,
+                          left: 70,
+                          child: CircleAvatar(
+                            radius: 20,
+                            backgroundColor: widget.product.color,
+                          ),
+                        ),
+                        const Positioned(
+                          top: 73,
+                          left: 83,
+                          child: CircleAvatar(
+                            radius: 7,
+                            backgroundColor: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),
