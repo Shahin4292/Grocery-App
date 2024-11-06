@@ -296,7 +296,7 @@ class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
             width: 60,
             decoration: BoxDecoration(
               color: Colors.amber,
-              image: const DecorationImage(image: NetworkImage("")),
+              image: const DecorationImage(image: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvPjv1lHEIpzgDk_e3Sm-e4EVOzggYdb5aHA&s")),
               borderRadius: BorderRadius.circular(20),
             ),
           ),
