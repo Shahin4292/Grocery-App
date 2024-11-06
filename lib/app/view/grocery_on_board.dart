@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:grocery_app/app/utils/app_assets.dart';
 import 'package:grocery_app/app/widget/bottom_nav_bar.dart';
 
-import '../../../utils/color_utils.dart';
+import '../utils/color_utils.dart';
 
 class GroceryOnBoard extends StatelessWidget {
   const GroceryOnBoard({super.key});

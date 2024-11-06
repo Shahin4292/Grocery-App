@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/app/model/products.dart';
 import 'package:grocery_app/app/utils/color_utils.dart';
-
-import '../../../data/model/products.dart';
-import '../../../widget/product_item_display.dart';
+import 'package:grocery_app/app/widget/product_item_display.dart';
 
 class HomeScreenGrocery extends StatefulWidget {
   const HomeScreenGrocery({super.key});
@@ -45,8 +44,8 @@ class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
                             setState(() {
                               grocery = groceryItems
                                   .where((element) => element.name
-                                  .toLowerCase()
-                                  .contains(value.toLowerCase()))
+                                      .toLowerCase()
+                                      .contains(value.toLowerCase()))
                                   .toList();
                             });
                           },

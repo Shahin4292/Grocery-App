@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../module/home/view/home_screen_grocery.dart';
+import '../view/home_screen_grocery.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -13,15 +13,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int currentIndex = 0;
 
   final List<Widget> pages = [
-    HomeScreenGrocery(),
-    Center(
+    const HomeScreenGrocery(),
+    const Center(
       child: Text("Data"),
     ),
-    HomeScreenGrocery(),
-    Center(
+    const HomeScreenGrocery(),
+    const Center(
       child: Text("Maile"),
     ),
-    Center(
+    const Center(
       child: Text("Profile"),
     ),
   ];
