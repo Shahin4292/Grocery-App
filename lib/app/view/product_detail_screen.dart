@@ -19,6 +19,56 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: headerParts(context),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                const SizedBox(height: 350),
+                Positioned(
+                  bottom: 30,
+                  left: 20,
+                  right: 20,
+                  child: Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 12,
+                          spreadRadius: 20,
+                          color: widget.product.color.withOpacity(0.1),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                ClipPath(
+                  clipper: ClipPathDetail(),
+                  child: Container(
+                    height: 300,
+                    width: size.width,
+                    color: widget.product.color.withOpacity(0.15),
+                  ),
+                ),
+                Positioned(
+                  bottom: -30,
+                  left: 20,
+                  right: 20,
+                  child: Hero(
+                    tag: widget.product.image,
+                    child: Image.asset(
+                      widget.product.image,
+                      width: size.width,
+                      height: 400,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -61,4 +111,24 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       ],
     );
   }
+}
+
+class ClipPathDetail extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, size.height - 50);
+    path.quadraticBezierTo(
+      size.width / 2,
+      size.height + 50,
+      size.width,
+      size.height - 50,
+    );
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
