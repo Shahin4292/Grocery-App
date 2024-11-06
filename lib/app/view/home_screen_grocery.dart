@@ -88,56 +88,7 @@ class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
             const SizedBox(
               height: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(
-                  groceryCategories.length,
-                  (index) => GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        categories = groceryCategories[index];
-                        categories == "ALL"
-                            ? grocery = groceryItems
-                            : grocery = groceryItems
-                                .where((element) =>
-                                    element.category.toLowerCase() ==
-                                    categories.toLowerCase())
-                                .toList();
-                      });
-                    },
-                    child: SizedBox(
-                      height: 50,
-                      child: Column(
-                        children: [
-                          Text(
-                            groceryCategories[index],
-                            style: TextStyle(
-                                fontSize: categories == groceryCategories[index]
-                                    ? 18
-                                    : 16,
-                                color: categories == groceryCategories[index]
-                                    ? textGreen
-                                    : Colors.black26,
-                                fontWeight:
-                                    categories == groceryCategories[index]
-                                        ? FontWeight.w900
-                                        : FontWeight.w500),
-                          ),
-                          categories == groceryCategories[index]
-                              ? const CircleAvatar(
-                                  radius: 4,
-                                  backgroundColor: textGreen,
-                                )
-                              : const SizedBox()
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            categoryItems(),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Padding(
@@ -156,10 +107,151 @@ class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
                 ),
               ),
             ),
+            const Padding(
+              padding: EdgeInsets.only(top: 15, left: 20),
+              child: Text(
+                "Recent Shop",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(
+                  groceryItems
+                      .where((items) => items.isRecent)
+                      .length, // filete isrecent == true
+
+                      (index) {
+                    Grocery recent = groceryItems
+                        .where((items) => items.isRecent)
+                        .toList()[index];
+                    // get only the items whose isRecent value is true
+                    return Padding(
+                      padding: index == 0
+                          ? const EdgeInsets.symmetric(horizontal: 20)
+                          : const EdgeInsets.only(right: 20),
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(40),
+                              decoration: BoxDecoration(
+                                color: Colors.blue[50],
+                                borderRadius: BorderRadius.circular(15),
+                                image: DecorationImage(
+                                  image: AssetImage(recent.image),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    recent.name,
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    recent.category,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      height: 2,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey.shade400,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Text(
+                              "\$${recent.price.toStringAsFixed(2)}",
+                              style: const TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: -2,
+                                color: Colors.green,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  Padding categoryItems() {
+    return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(
+                groceryCategories.length,
+                (index) => GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      categories = groceryCategories[index];
+                      categories == "ALL"
+                          ? grocery = groceryItems
+                          : grocery = groceryItems
+                              .where((element) =>
+                                  element.category.toLowerCase() ==
+                                  categories.toLowerCase())
+                              .toList();
+                    });
+                  },
+                  child: SizedBox(
+                    height: 50,
+                    child: Column(
+                      children: [
+                        Text(
+                          groceryCategories[index],
+                          style: TextStyle(
+                              fontSize: categories == groceryCategories[index]
+                                  ? 18
+                                  : 16,
+                              color: categories == groceryCategories[index]
+                                  ? textGreen
+                                  : Colors.black26,
+                              fontWeight:
+                                  categories == groceryCategories[index]
+                                      ? FontWeight.w900
+                                      : FontWeight.w500),
+                        ),
+                        categories == groceryCategories[index]
+                            ? const CircleAvatar(
+                                radius: 4,
+                                backgroundColor: textGreen,
+                              )
+                            : const SizedBox()
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
   }
 
   Padding headerPart() {
