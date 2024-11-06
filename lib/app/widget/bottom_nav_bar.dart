@@ -58,6 +58,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   ),
                 ),
                 label: ""),
+
             const BottomNavigationBarItem(icon: Icon(Icons.mail), label: ""),
             const BottomNavigationBarItem(
                 icon: Icon(Icons.person_outline), label: ""),

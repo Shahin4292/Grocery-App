@@ -139,4 +139,4 @@ List<Grocery> groceryItems = [
   ),
 ];
 const description =
-    "are an essential part of a healthy diet, providing the body with a wide range of nutrients, vitamins, and minerals that are crucial for overall well-being. Apples, for example, are not only rich in dietary fiber, which aids digestion and promotes gut health, but they also contain antioxidants that help reduce the risk of chronic diseases. Regular consumption of apples can improve heart health, lower cholesterol levels, and contribute to better weight management";
+    "Are an essential part of a healthy diet, providing the body with a wide range of nutrients, vitamins, and minerals that are crucial for overall well-being. Apples, for example, are not only rich in dietary fiber, which aids digestion and promotes gut health, but they also contain antioxidants that help reduce the risk of chronic diseases. Regular consumption of apples can improve heart health, lower cholesterol levels, and contribute to better weight management";
