@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/app/model/products.dart';
 import 'package:grocery_app/app/utils/color_utils.dart';
+import 'package:grocery_app/app/view/product_detail_screen.dart';
 import 'package:grocery_app/app/widget/product_item_display.dart';
 
 class HomeScreenGrocery extends StatefulWidget {
@@ -101,7 +102,16 @@ class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
                         padding: const EdgeInsets.only(left: 20),
                         child: ProductItemDisplay(grocery: grocery[index]),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => ProductDetailScreen(
+                              product: grocery[index],
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -286,7 +296,7 @@ class _HomeScreenGroceryState extends State<HomeScreenGrocery> {
             width: 60,
             decoration: BoxDecoration(
               color: Colors.amber,
-              image: const DecorationImage(image: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvPjv1lHEIpzgDk_e3Sm-e4EVOzggYdb5aHA&s")),
+              image: const DecorationImage(image: NetworkImage("")),
               borderRadius: BorderRadius.circular(20),
             ),
           ),
