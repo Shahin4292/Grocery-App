@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:readmore/readmore.dart';
+
 // import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../model/products.dart';
 import '../utils/color_utils.dart';
@@ -14,6 +17,7 @@ class ProductDetailScreen extends StatefulWidget {
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int quantity = 1;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -82,16 +86,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                   Row(
                     children: [
-                      // RatingBar.builder(
-                      //   initialRating: widget.product.rate,
-                      //   itemSize: 30,
-                      //   allowHalfRating: true,
-                      //   itemBuilder: (context, index) => const Icon(
-                      //     Icons.star_rounded,
-                      //     color: Colors.orange,
-                      //   ),
-                      //   onRatingUpdate: (rating) {},
-                      // ),
+                      RatingBar.builder(
+                        initialRating: widget.product.rate,
+                        itemSize: 30,
+                        allowHalfRating: true,
+                        itemBuilder: (context, index) => const Icon(
+                          Icons.star_rounded,
+                          color: Colors.orange,
+                        ),
+                        onRatingUpdate: (rating) {},
+                      ),
                       Text(
                         " (${widget.product.rate})",
                         style: const TextStyle(
@@ -106,7 +110,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           GestureDetector(
                             onTap: () {
                               setState(
-                                    () => quantity > 1 ? quantity-- : null,
+                                () => quantity > 1 ? quantity-- : null,
                               );
                             },
                             child: Container(
@@ -170,24 +174,24 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  // const SizedBox(height: 20),
-                  // ReadMoreText(
-                  //   "${widget.product.name} ${widget.product.description}",
-                  //   style: const TextStyle(
-                  //     fontSize: 17,
-                  //     fontWeight: FontWeight.w500,
-                  //     height: 1.5,
-                  //     color: Colors.black26,
-                  //   ),
-                  //   trimLength: 110,
-                  //   trimCollapsedText: "Read More",
-                  //   trimExpandedText: "Read Less",
-                  //   colorClickableText: widget.product.color,
-                  //   moreStyle: TextStyle(
-                  //     fontWeight: FontWeight.bold,
-                  //     color: widget.product.color,
-                  //   ),
-                  // ),
+                  const SizedBox(height: 20),
+                  ReadMoreText(
+                    "${widget.product.name} ${widget.product.description}",
+                    style: const TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500,
+                      height: 1.5,
+                      color: Colors.black26,
+                    ),
+                    trimLength: 110,
+                    trimCollapsedText: "Read More",
+                    trimExpandedText: "Read Less",
+                    colorClickableText: widget.product.color,
+                    moreStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: widget.product.color,
+                    ),
+                  ),
                   const SizedBox(height: 20),
                   Container(
                     height: 175,
